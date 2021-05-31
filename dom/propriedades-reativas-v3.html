@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="aumentar">Aumentar</button>
+        <button v-on:click="contador2++">Aumentar2</button>
+        <button v-on:click="diminuir">Diminuir</button>
+        <p>Contador: {{contador}} | {{contador2}}</p>
+        <p>Resultado: {{resultado}}</p>
+    </div>
+
+    <script src="../ScriptSource/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                contador2: 0
+            },
+            watch: { //monitorando propiedades
+                contador(novo, antigo) {
+                    setTimeout(() => {
+                        this.contador = 0
+                    }, 2000)
+                }
+            },
+            computed: { // propriedades sincronas
+                resultado() {
+                    return this.contador >= 5 ? 'Maior igual a 5' : 'Menor igual a 5'
+                }
+            },
+            methods: {
+                aumentar() {
+                    this.contador++
+                    
+                },
+                diminuir() {
+                    this.contador--
+                },
+                /*resultado() {
+                    return this.contador >= 5 ? 'Maior igual a 5' : 'Menor igual a 5'
+                }*/
+            }
+        })
+    </script>
+</body>
+</html>

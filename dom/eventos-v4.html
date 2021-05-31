@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ contador }}</h1>
+        <button v-on:click="somarUm(5, $event)">Soma 1</button>
+        <p v-on:mousemove="atualizarXY">
+            Mouse: {{x}} e {{y}}
+            <span v-on:mousemove.stop>PARAR AQUI!!!</span> <!-- para a propagação do evento -->
+        </p>
+        <a v-on:click.prevent="naoNavegar" href="http://www.google.com.br">Google</a> <!-- previne o comportamento padrão do elemento --> 
+    </div>
+
+    <script src="../ScriptSource/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                x: 0,
+                y: 0
+            },
+            methods: {
+                somarUm(passo, event) {
+                    console.log(event)
+                    this.contador += 5
+                },
+                atualizarXY(e) {
+                    this.x = e.clientX
+                    this.y = e.clientY
+                },
+                /*parar(e) {
+                    e.stopPropagation()
+                },*/
+                naoNavegar(e) {
+                    console.log("Não navegar")
+                    //e.preventDefault()
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -12,28 +12,36 @@
             <div class="panel scores">
                 <div class="score">
                     <h1>Player</h1>
-                    <div class="life-bar">
+                    <div class="bar">
                         <div class="life" :class="{danger: playerLife<20}" :style="{width: playerLife+'%'}"></div>
                     </div>
                     <div>{{playerLife}}%</div>
+                    <div class="bar">
+                        <div class="energy" :class="{tired: playerEnergy<25}" :style="{width: playerEnergy+'%'}"></div>
+                    </div>
+                    <div>{{playerEnergy}}%</div>
                 </div>
                 <div class="score">
                     <h1>Monster</h1>
-                    <div class="life-bar">
+                    <div class="bar">
                         <div class="life" :class="{danger: monsterLife<20}" :style="{width: monsterLife+'%'}"></div>
                     </div>
                     <div>{{monsterLife}}%</div>
+                    <div class="bar">
+                        <div class="fury" :class="{ready: monsterFury>80}" :style="{width: monsterFury+'%'}"></div>
+                    </div>
+                    <div>{{monsterFury}}%</div>
                 </div>
             </div>
             <div v-if="hasResult" class="panel result">
-                <div v-if="monsterLife == 0" class="win">YOU WIN!!! :)</div>
-                <div v-else class="lose">YOU LOSE! :(</div>
+                <div v-if="playerLife == 0" class="lose">YOU LOSE! :(</div>
+                <div v-else class="win">YOU WIN!!! :)</div>
             </div>
             <div class="panel buttons">
                 <template v-if="running">
                     <button class="btn attack" @click="attack(false)">Attack</button>
                     <button class="btn especial-attack" @click="attack(true)">Especial attack</button>
-                    <button class="btn heal">Heal</button>
+                    <button class="btn rest" @click="restAndHurt">Rest</button>
                     <button class="btn give-up" @click="giveUp">Give up</button>
                 </template>
                 <template v-else>

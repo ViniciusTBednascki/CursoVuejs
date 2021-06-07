@@ -32,21 +32,44 @@ body {
     font-size: 1.6rem;
 }
 
-.life-bar {
+.bar {
     width: 80%;
     height: 20px;
     border: 1px solid #666;
+    margin: 10px 0 5px;
 }
 
-.life-bar .life {
+.bar .life {
     display: flex;
     justify-content: center;
     height: 100%;
     background-color: green;
 }
 
-.life-bar .life.danger {
+.bar .life.danger {
     background-color: red;
+}
+
+.bar .energy {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    background-color: cyan;
+}
+
+.bar .energy.tired {
+    background-color: darkcyan;
+}
+
+.bar .fury {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    background-color: darkorange;
+}
+
+.bar .fury.ready {
+    background-color: darkred;
 }
 
 .result {
@@ -93,7 +116,7 @@ body {
     color: black;
 }
 
-.heal {
+.rest {
     background-color: #259b24;
     color: whitesmoke;
 }

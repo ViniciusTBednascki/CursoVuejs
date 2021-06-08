@@ -125,3 +125,44 @@ body {
     background-color: #000;
     color: whitesmoke;
 }
+
+/* Logs */
+
+.logs ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.logs ul li {
+    display: flex;
+    justify-content: center;
+    margin: 4px 0;
+    padding: 3px 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+.playerAttack {
+    background-color: #4253afaa;
+    color: whitesmoke;
+}
+
+.monsterAttack {
+    background-color: #e51c23aa;
+    color: whitesmoke;
+}
+
+.playerRest {
+    background-color: #259b24aa;
+    color: whitesmoke;
+}
+
+.playerTired {
+    background-color: #01375aaa;
+    color: whitesmoke;
+}

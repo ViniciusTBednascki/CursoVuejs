@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Meu Vue</title>
+    </head>
+    <body>
+        <div id="app">
+            {{nome}} {{sobrenome}} {{((5+5-2)*2)/4}} {{Math.pow(2,3)}}
+        </div>
+    </body>
+    <script>
+        function meuVue(params) {
+            this.$el = document.querySelector(params.el)
+            this.$data = params.data
+
+            //criação do proxy para os atributos dentro de data 
+            for(let atr in this.$data) { 
+                Object.defineProperty(this, atr, {
+                    get: () => {
+                        return this.$data[atr]
+                    },
+                    set: value => {
+                        //...
+                        this.$data[atr] = value
+                        //...
+                    }
+                })
+            }
+
+            //interpolação
+            const regex = /\{\{([\s\w)(.,+*\/-]*)\}\}/g
+            this.$el.innerHTML = this.$el.innerHTML.replace(regex, (match, $1) => {
+                const value = this[$1.trim()]
+                return value ? value : eval($1)
+            }) 
+        }
+
+        const vm = new meuVue({
+            el: '#app',
+            data: {
+                nome: 'Mariana',
+                sobrenome: 'Bernardo'
+            }
+        })
+
+        console.log(vm.nome)
+        console.log(vm.$data.nome)
+
+        vm.nome = 'Ana'
+        console.log(vm.nome)
+        console.log(vm.$data.nome)
+    </script>
+</html>

@@ -33,7 +33,6 @@ new Vue({
         attack(especial) {
             this.hurt('monsterLife', 5, 10, especial)
             this.hurt('playerLife', 5, 10, this.monsterEspecial)
-            this.monsterFury = Math.min(this.monsterFury+20, 100)
         },
         whatHappend(target, especial) {
             if(especial && this.playerEnergy >= 25 && target == 'monsterLife') {
@@ -45,8 +44,11 @@ new Vue({
                 return 8
             }else if(target == 'monsterLife'){
                 this.playerEnergy = Math.min(this.playerEnergy+10, 100)
+                return 0
+            }else {
+                this.monsterFury = Math.min(this.monsterFury+20, 100)
+                return 0
             }
-            return 0
         },
         hurt(target, min, max, especial) {
             let bonus = this.whatHappend(target, especial)
@@ -59,9 +61,8 @@ new Vue({
             this.playerEnergy = Math.min(this.playerEnergy + 20, 100)
         },
         restAndHurt() {
-            this.rest(5, 10)
+            this.rest(3, 7)
             this.hurt('playerLife', 5, 10, this.monsterEspecial)
-            this.monsterFury = Math.min(this.monsterFury+20, 100)
         }
     },
     watch: {

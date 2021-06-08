@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Multi Instancia</title>
+        <script src="../ScriptSource/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+            {{titulo}}
+            <button @click="alterar">Alterar</button>
+        </div>
+
+        <div id="app2">
+            {{titulo}}
+            <button @click="alterar">Alterar</button>
+        </div>
+    </body>
+    <script>
+        new Vue({
+            el: '#app1',
+            data: {
+                titulo: "Teste 1"
+            },
+            methods: {
+                alterar() {
+                    this.titulo += "!!!"
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app2',
+            data: {
+                titulo: "Teste 2"
+            },
+            methods: {
+                alterar() {
+                    this.titulo += "!!!"
+                }
+            }
+        })
+    </script>
+</html>

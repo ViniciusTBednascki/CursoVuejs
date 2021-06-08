@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Multi Instancia</title>
+        <script src="../ScriptSource/vue.js"></script>
+    </head>
+    <body>
+        <div id="app2">
+            {{titulo}} {{novaInfo}}
+            <button @click="alterar">Alterar</button>
+        </div>
+    </body>
+    <script>
+        const vm = new Vue({
+            el: '#app2',
+            data: {
+                titulo: "Abra o console"
+            },
+            methods: {
+                alterar() {
+                    this.titulo += "!"
+                }
+            }
+        })
+
+        vm.novaInfo = "Info de fora"
+        console.log(vm.novaInfo)
+    </script>
+</html>

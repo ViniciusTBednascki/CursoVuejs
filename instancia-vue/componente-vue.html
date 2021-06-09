@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Montando Instancia Vue</title>
+        <script src="../ScriptSource/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <comp></comp>
+        </div>
+    </body>
+    <script>
+        Vue.component('comp', {
+            template: `
+                <div>
+                    <h1>{{ aula }}</h1>
+                    <h2>{{modulo}}</h2>
+                    <button @click="alterarAula">Alterar Aula</button>
+                    <button @click="alterarModulo">Alterar Modulo</button>
+                </div>
+            `,
+            data: function() {
+                return {
+                aula: "Montando Instancia Vue",
+                modulo: "Modulo: Instancia Vue"
+                }
+            },
+            methods: {
+                alterarAula() {
+                    this.aula += "#"
+                },
+                alterarModulo() {
+                    this.modulo += "#"
+                }
+            }
+        })
+
+        const vm = new Vue({
+            el: '#app',
+        })
+    </script>
+</html>

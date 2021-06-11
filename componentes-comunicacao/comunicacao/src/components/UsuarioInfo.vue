@@ -2,12 +2,13 @@
     <div class="componente">
         <h2>As Informações de Usuário</h2>
         <p>Vários detalhes...</p>
+        <p>Nome do Usuario: <strong>{{usuarioNome}}</strong></p>
     </div>
 </template>
 
 <script>
 export default {
-    
+    props:['usuarioNome']
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<usuario-lista :usuarios="usuarios" />
-		<usuario-detalhe />
+		<usuario-lista :usuarios="usuarios" @usuarioSelecionado="UsuarioSelecionado= $event"/>
+		<usuario-detalhe :usuario="UsuarioSelecionado"/>
 	</div>
 </template>
 
@@ -20,7 +20,8 @@ export default {
                 { id: 3, nome: 'Daniel', idade: 40 },
                 { id: 4, nome: 'Ema', idade: 17 },
                 { id: 5, nome: 'Lia', idade: 28 }
-            ]
+            ],
+			UsuarioSelecionado: null
         }
     }
 }

@@ -11,10 +11,8 @@
 
 <script>
 export default {
-    data() {
-        return {
-            usuario: null
-        }
+    props: {
+        usuario: Object
     }
 }
 </script>

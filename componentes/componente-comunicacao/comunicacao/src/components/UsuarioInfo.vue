@@ -4,26 +4,28 @@
         <p>Vários detalhes...</p>
         <p>Nome do usuário: <strong>{{inverterNome()}}</strong></p>
         <button @click="reiniciarNome">Reiniciar Nome</button>
+        <button @click="reiniciarFn">Reiniciar Nome (callback)</button>
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        nomeUsuario: {
+        nome: {
             type: String,
             //required: true,
             default: "Anônimo"
-        }
+        },
+        reiniciarFn: Function
     },
     methods: {
         inverterNome() {
-            return this.nomeUsuario.split('').reverse().join('')
+            return this.nome.split('').reverse().join('')
         },
         reiniciarNome() {
-            const antigo = this.nomeUsuario
-            this.nomeUsuario = 'Pedro'
-            this.$emit('nomeMudou', {antigo, novo: this.nomeUsuario})
+            const antigo = this.nome
+            this.nome = 'Pedro'
+            this.$emit('nomeMudou', {antigo, novo: this.nome})
         }
     }
 }

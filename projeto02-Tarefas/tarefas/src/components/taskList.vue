@@ -1,7 +1,9 @@
 <template>
     <ul class="taskList">
         <template v-for="task in taskList">
-            <button :key="task.name" @click="chageTaskStatus(task)">{{task.name}}</button>
+            <div class="task" :key="task.name" @click="chageTaskStatus(task)">
+                <span>{{task.name}}</span>
+            </div>
         </template>
     </ul>
 </template>
@@ -21,15 +23,25 @@ export default {
 </script>
 
 <style scoped>
+    .taskList {
+        height: 50%;
+        width: 100%;
+    }
+
     ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         list-style: none;
         margin: 5px 0;
         padding: 0;
         text-align: center;
     }
 
-    li {
-        margin: 2px 0;
-        padding: 2px;
+    .task {
+        border: 1px solid #000;
+        height: 50%;
+        width: 20%;
+        margin: 0.5rem;
     }
 </style>

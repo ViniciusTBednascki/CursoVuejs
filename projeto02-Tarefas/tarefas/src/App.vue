@@ -22,9 +22,9 @@ export default {
 	},
 	methods: {
 		addNewTask(newTask) {
-			const contain = this.todo.indexOf(newTask) !== -1
-			if(!contain) {
-				this.todo.push({name: newTask, status: 'todo'})
+			const result = this.todo.find(task => task.name === newTask.name)
+			if(result === undefined) {
+				this.todo.push(newTask)
 			}
 		},
 		changeStatus(index) {

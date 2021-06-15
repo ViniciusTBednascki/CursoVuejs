@@ -1,7 +1,7 @@
 <template>
     <div class="taskInput">
-        <input type="text" v-model="newTask">
-        <button @click="addNewTask()">+</button>
+        <input type="text" v-model="newTask" @keyup.enter="addNewTask">
+        <button @click="addNewTask">+</button>
     </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         addNewTask() {
-            this.$emit('newTaskAdded', this.newTask)
+            this.$emit('newTaskAdded', {name: this.newTask, status: 'todo'})
             this.newTask = null
         }
     }

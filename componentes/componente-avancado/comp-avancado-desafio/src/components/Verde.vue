@@ -1,6 +1,6 @@
 <template>
     <div class="caixa verde">
-        Conteúdo do Componente Verde
+        <slot/>
     </div>
 </template>
 
@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style scoped>
-
+    strong {
+            color: darkgreen
+        }
 </style>

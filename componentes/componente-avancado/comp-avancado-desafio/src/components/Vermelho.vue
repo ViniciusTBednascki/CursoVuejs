@@ -1,6 +1,6 @@
 <template>
     <div class="caixa vermelho">
-        Conteúdo do Componente Vermelho
+        <slot/>
     </div>
 </template>
 
@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style>
-
+    strong {
+            color: darkred
+        }
 </style>

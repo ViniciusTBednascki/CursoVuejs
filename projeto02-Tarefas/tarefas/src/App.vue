@@ -16,8 +16,7 @@ export default {
 	components : {CreateTask, TaskList, CompleteBar},
 	data() {
 		return{
-            todo: [],
-			done: 0
+            todo: []
 		}
 	},
 	methods: {
@@ -29,11 +28,11 @@ export default {
 		},
 		changeStatus(index) {
 			this.todo[index].status = this.todo[index].status === 'todo' ? 'done' : 'todo'
-			if(this.todo[index].status === 'done') {
-				this.done += 1
-			}else {
-				this.done -= 1
-			}
+		}
+	},
+	computed: {
+		done() {
+			return this.todo.filter(task => task.status == 'done').length
 		}
 	}
 }

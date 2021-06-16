@@ -11,7 +11,7 @@ export default {
     },
     methods: {
         statusChange() {
-            this.$emit('myStatusChanged', this)
+            this.$emit('myStatusChanged', this.task)
         }
     }
 }

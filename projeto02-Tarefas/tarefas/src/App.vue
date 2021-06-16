@@ -3,7 +3,7 @@
 		<h1>Tarefas</h1>
 		<complete-bar :total="todo.length" :done="done"/>
 		<create-task @newTaskAdded="addNewTask($event)"/>
-		<task-list :taskList="todo" @statusChanged="changeStatus($event)"/>
+		<task-list :taskList="todo" @statusChanged="changeStatus($event)" @taskDeleted="deleteTask($event)"/>
 	</div>
 </template>
 
@@ -28,6 +28,9 @@ export default {
 		},
 		changeStatus(index) {
 			this.todo[index].status = this.todo[index].status === 'todo' ? 'done' : 'todo'
+		},
+		deleteTask(index) {
+			this.todo.splice(index,1)
 		}
 	},
 	computed: {

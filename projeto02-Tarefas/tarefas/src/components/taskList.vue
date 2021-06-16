@@ -1,7 +1,7 @@
 <template>
     <div class="taskList">
         <template v-if="taskList.length">
-            <task v-for="task in taskList" :key="task.name" :task="task" @myStatusChanged="changeTaskStatus(task)" />
+                <task v-for="task in taskList" :key="task.name" :task="task" @myStatusChanged="changeTaskStatus($event)"/>
         </template>
         <p v-else class="noTask">Sua vida está em dia :)</p>
     </div>
@@ -18,6 +18,10 @@ export default {
         changeTaskStatus(task) {
             const index = this.taskList.indexOf(task)
             this.$emit('statusChanged', index)
+        },
+        deleteTask(task) {
+            const index = this.taskList.indexOf(task)
+            this.$emit('taskDeleted', index)
         }
     }
 }

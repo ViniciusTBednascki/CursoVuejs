@@ -1,8 +1,8 @@
 <template>
     <ul class="taskList">
         <template v-for="task in taskList">
-            <div class="task" :key="task.name" @click="chageTaskStatus(task)">
-                <span>{{task.name}}</span>
+            <div :key="task.name" @click="chageTaskStatus(task)"  class="task" :class="task.status">
+                <h3>{{task.name}}</h3>
             </div>
         </template>
     </ul>
@@ -39,9 +39,23 @@ export default {
     }
 
     .task {
-        border: 1px solid #000;
-        height: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        height: 30%;
         width: 20%;
         margin: 0.5rem;
+    }
+
+    .todo {
+        background-color:rgb(138, 0, 0);
+        border: 2px solid rgb(78, 0, 0);
+    }
+
+    .done {
+        background-color: rgb(0, 180, 0);
+        border: 2px solid darkgreen;
+        text-decoration: line-through;
     }
 </style>

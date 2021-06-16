@@ -1,7 +1,7 @@
 <template>
     <div class="taskList">
         <template v-if="taskList.length">
-                <task v-for="task in taskList" :key="task.name" :task="task" @myStatusChanged="changeTaskStatus($event)"/>
+                <task v-for="(task, i) in taskList" :key="i" :task="task" @taskStatusChanged="$emit('statusChanged', i)" @taskDeleted="$emit('taskDeleted', i)"/>
         </template>
         <p v-else class="noTask">Sua vida está em dia :)</p>
     </div>
@@ -13,16 +13,6 @@ export default {
     components: {Task},
     props: {
         taskList: { type: Array, required: true}
-    },
-    methods: {
-        changeTaskStatus(task) {
-            const index = this.taskList.indexOf(task)
-            this.$emit('statusChanged', index)
-        },
-        deleteTask(task) {
-            const index = this.taskList.indexOf(task)
-            this.$emit('taskDeleted', index)
-        }
     }
 }
 </script>

@@ -32,6 +32,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
         list-style: none;
         margin: 5px 0;
         padding: 0;
@@ -42,7 +43,7 @@ export default {
         cursor: pointer;
         display: flex;
         justify-content: center;
-        align-content: center;
+        align-items: center;
         height: 30%;
         width: 20%;
         margin: 0.5rem;

@@ -37,6 +37,19 @@ export default {
 		done() {
 			return this.todo.filter(task => task.status == 'done').length
 		}
+	},
+	watch: {
+		todo: {
+			deep: true,
+			handler() {
+				localStorage.setItem('todo', JSON.stringify(this.todo))
+			}
+		}
+	},
+	created() {
+		const json = localStorage.getItem('todo')
+		const array = JSON.parse(json)
+		this.todo = Array.isArray(array) ? array : []
 	}
 }
 </script>

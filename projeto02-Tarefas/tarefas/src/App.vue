@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
-		<complete-bar :total="todo.length" :done="done"/>
+		<task-progress :total="todo.length" :done="done"/>
 		<create-task @newTaskAdded="addNewTask($event)"/>
 		<task-list :taskList="todo" @statusChanged="changeStatus($event)" @taskDeleted="deleteTask($event)"/>
 	</div>
@@ -10,10 +10,10 @@
 <script>
 import CreateTask from '@/components/createTask.vue'
 import TaskList from '@/components/taskList.vue'
-import CompleteBar from '@/components/completeBar.vue'
+import TaskProgress from '@/components/taskProgress.vue'
 
 export default {
-	components : {CreateTask, TaskList, CompleteBar},
+	components : {CreateTask, TaskList, TaskProgress},
 	data() {
 		return{
             todo: []

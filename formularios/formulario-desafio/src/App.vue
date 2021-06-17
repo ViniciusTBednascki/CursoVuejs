@@ -18,12 +18,7 @@
 				<!-- Exercicio 03 -->
 				<!-- Crie um componente personalizado NomeCompleto -->
 				<!-- Esse componente deve receber Nome e Sobrenome -->
-				<Rotulo nome="Nome">
-					<input type="text" v-model="usuario.nome">
-				</Rotulo>
-				<Rotulo nome="Sobrenome">
-					<input type="text" v-model="usuario.sobrenome">
-				</Rotulo>
+				<Nome-completo v-model="usuario.nomeCompleto"/>
 				<Rotulo nome="E-mail">
 					<input type="text" v-model.lazy.trim="usuario.email">
 				</Rotulo>
@@ -43,10 +38,10 @@
 			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
 				<Rotulo nome="Nome">
-					<span>{{usuario.nome}}</span>
+					<span>{{usuario.nomeCompleto.nome}}</span>
 				</Rotulo>
 				<Rotulo nome="Sobrenome">
-					<span>{{usuario.sobrenome}}</span>
+					<span>{{usuario.nomeCompleto.sobrenome}}</span>
 				</Rotulo>
 				<Rotulo nome="E-mail">
 					<span>{{usuario.email}}</span>
@@ -67,15 +62,18 @@
 
 <script>
 import Rotulo from './components/Rotulo.vue'
+import NomeCompleto from './components/nomeCompleto.vue'
 
 export default {
 	name: 'app',
-	components: { Rotulo },
+	components: { Rotulo, NomeCompleto },
 	data() {
 		return {
 			usuario: {
-				nome: '',
-				sobrenome: '',
+				nomeCompleto: {
+					nome: '',
+					sobrenome: ''
+				},
 				email: '',
 				senha: '',
 				idade: null

@@ -18,7 +18,49 @@
 				<!-- Exercicio 03 -->
 				<!-- Crie um componente personalizado NomeCompleto -->
 				<!-- Esse componente deve receber Nome e Sobrenome -->
+				<Rotulo nome="Nome">
+					<input type="text" v-model="usuario.nome">
+				</Rotulo>
+				<Rotulo nome="Sobrenome">
+					<input type="text" v-model="usuario.sobrenome">
+				</Rotulo>
+				<Rotulo nome="E-mail">
+					<input type="text" v-model.lazy.trim="usuario.email">
+				</Rotulo>
+				<Rotulo nome="Senha">
+					<input type="password" v-model="usuario.senha">
+				</Rotulo>
+				<Rotulo nome="Idade">
+					<input type="number" v-model.number="usuario.idade">
+				</Rotulo>
+				<Rotulo nome="Armazenar Dados?">
+					<span class="mr-4"><input type="radio" value="Sim" v-model="armazenar"> Sim</span>
+					<span class="mr-4"><input type="radio" value="Não" v-model="armazenar"> Não</span>
+				</Rotulo>
+				<hr>
+				<button @click.prevent="enviar">Enviar</button>
 			</form>
+			<div class="painel" v-else>
+				<div class="cabecalho">Resultado</div>
+				<Rotulo nome="Nome">
+					<span>{{usuario.nome}}</span>
+				</Rotulo>
+				<Rotulo nome="Sobrenome">
+					<span>{{usuario.sobrenome}}</span>
+				</Rotulo>
+				<Rotulo nome="E-mail">
+					<span>{{usuario.email}}</span>
+				</Rotulo>
+				<Rotulo nome="Senha">
+					<span>{{usuario.senha}}</span>
+				</Rotulo>
+				<Rotulo nome="Idade">
+					<span>{{usuario.idade}}</span>
+				</Rotulo>
+				<Rotulo nome="Armazenar Dados?">
+					<span>{{armazenar}}</span>
+				</Rotulo>
+			</div>
 		</div>
 	</div>
 </template>

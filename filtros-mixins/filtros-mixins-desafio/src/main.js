@@ -3,12 +3,8 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-Vue.filter('contaLetra', function(valor) {
-	const array = valor.split(' ')
-	array.forEach( (palavra, index) => {
-		array[index] = `${palavra} (${palavra.length})`
-	})
-	return array.join(' ')
+Vue.filter('contarLetras', function(valor) {
+	return valor.split(' ').map(palavra => `${palavra} (${palavra.length})`).join(' ')
 })
 new Vue({
 	render: h => h(App),

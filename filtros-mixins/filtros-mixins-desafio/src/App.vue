@@ -3,13 +3,13 @@
 		<h1>Filtros & Mixins (Desafio)</h1>
 		<!-- Exercício 1 -->
 		<!-- Construir um filtro local que troca espaços por vírgula -->
-		<p>{{frase | virgula}}</p>
+		<p>{{frase | espacoPorVirgula}}</p>
 		<hr>
 		<!-- Exercício 2 -->
 		<!-- Filtro global que conta o tamanho de cada palavra e adiciona o 
 			valor na string final -->
 		<!-- "Pedro é legal" => "Pedro (5) é (1) legal (5)" -->
-		<p>{{frase | contaLetra}}</p>
+		<p>{{frase | contarLetras}}</p>
 
 		<!-- Exercício 3 -->
 		<!-- Implementar os exercicios 1 e 2 com propriedade computada -->
@@ -22,8 +22,8 @@
 <script>
 export default {
 	filters: {
-		virgula(valor) {
-			return valor.split(' ').join(',')
+		espacoPorVirgula(valor) {
+			return valor.replace(/\s/g, ',')
 		}
 	},
 	data() {

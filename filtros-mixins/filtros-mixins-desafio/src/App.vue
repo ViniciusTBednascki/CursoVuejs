@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<h1>Filtros & Mixins (Desafio)</h1>
+		<p>{{frase | virgula}}</p>
 		<!-- Exercício 1 -->
 		<!-- Construir um filtro local que troca espaços por vírgula -->
 		
@@ -19,7 +20,16 @@
 
 <script>
 export default {
-	
+	filters: {
+		virgula(valor) {
+			return valor.split(' ').join(',')
+		}
+	},
+	data() {
+		return {
+			frase: "Testando o fitro de troca"
+		}
+	}
 }
 </script>
 

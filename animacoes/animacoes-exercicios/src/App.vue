@@ -9,7 +9,7 @@
 		</transition>
 
 		<transition name="slide">
-			<b-alert variant="info" show v-if="exibir">{{msg}}</b-alert>
+			<b-alert variant="info" show v-show="exibir">{{msg}}</b-alert>
 		</transition>
 	</div>
 </template>
@@ -57,9 +57,15 @@ export default {
 
 .slide-enter-active {
 	animation: slide-in 1s ease;
+	transition: opacity 1s;
 }
 
 .slide-leave-active {
 	animation: slide-out 1s ease;
+	transition: opacity 1s;
+}
+
+.slide-enter, .slide-leave-to {
+	opacity: 0;
 }
 </style>

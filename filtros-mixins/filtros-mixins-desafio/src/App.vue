@@ -10,10 +10,12 @@
 			valor na string final -->
 		<!-- "Pedro é legal" => "Pedro (5) é (1) legal (5)" -->
 		<p>{{frase | contarLetras}}</p>
-
+		<hr>
 		<!-- Exercício 3 -->
 		<!-- Implementar os exercicios 1 e 2 com propriedade computada -->
-
+		<p>{{fraseComVirgulas}}</p>
+		<p>{{fraseComTamanhos}}</p>
+		<hr>
 		<!-- Exercício 4 -->
 		<!-- Compartilhe a propriedade computada via mixin -->
 	</div>
@@ -29,6 +31,14 @@ export default {
 	data() {
 		return {
 			frase: "Testando os fitros"
+		}
+	},
+	computed: {
+		fraseComVirgulas() {
+			return this.frase.replace(/\s/g, ',')
+		},
+		fraseComTamanhos() {
+			return this.frase.split(' ').map(palavra => `${palavra} (${palavra.length})`).join(' ')
 		}
 	}
 }

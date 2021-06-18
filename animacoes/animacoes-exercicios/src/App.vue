@@ -3,7 +3,12 @@
 		<h1>Animações</h1>
 		<hr>
 		<b-button variant="primary" class="mb-3" @click="exibir = !exibir">Mostrar Mensagem</b-button>
+
 		<transition name="fade">
+			<b-alert variant="info" show v-if="exibir">{{msg}}</b-alert>
+		</transition>
+
+		<transition name="slide">
 			<b-alert variant="info" show v-if="exibir">{{msg}}</b-alert>
 		</transition>
 	</div>
@@ -38,5 +43,23 @@ export default {
 
 .fade-enter-active, .fade-leave-active {
 	transition: opacity 1s;
+}
+
+@keyframes slide-in {
+	from { transform: translateY(20px); }
+	to { transform: translateY(0); }
+}
+
+@keyframes slide-out {
+	from { transform: translateY(0); }
+	to { transform: translateY(20px); }
+}
+
+.slide-enter-active {
+	animation: slide-in 1s ease;
+}
+
+.slide-leave-active {
+	animation: slide-out 1s ease;
 }
 </style>

@@ -33,10 +33,6 @@
                     <div>{{monsterFury}}%</div>
                 </div>
             </div>
-            <div v-if="hasResult" class="panel result">
-                <div v-if="playerLife == 0" class="lose">YOU LOSE! :(</div>
-                <div v-else class="win">YOU WIN!!! :)</div>
-            </div>
             <div class="panel buttons">
                 <template v-if="running">
                     <button class="btn attack" @click="attack(false)">Attack</button>
@@ -48,13 +44,21 @@
                     <button class="btn new-game" @click="startGame">New game</button>
                 </template>
             </div>
-            <div v-if="logs.length" class="panel logs">
-                <ul>
-                    <li v-for="log in logs" class="log" :class="log.cls">
-                        {{log.text}}
-                    </li>
-                </ul>
-            </div>
+            <transition name="slide">
+                <div v-if="hasResult" class="panel result">
+                    <div v-if="playerLife == 0" class="lose">YOU LOSE! :(</div>
+                    <div v-else class="win">YOU WIN!!! :)</div>
+                </div>
+            </transition>
+            <transition name="slide">
+                <div v-if="logs.length" class="panel logs">
+                    <transition-group name="fade" tag="ul">
+                        <li v-for="(log, i) in logs" class="log" :class="log.cls" :key="log.text">
+                            {{log.text}}
+                        </li>
+                    </transition-group>
+                </div>
+            </transition>
         </div>
     </body>
     <script src="app.js"></script>

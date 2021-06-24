@@ -28,8 +28,8 @@
 		</transition>
 
 		<hr>
-		<b-button variant="success" @click="exibir2 = !exibir2">Mostrar</b-button>
-		<transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @enter-cancelled="enterCancelled" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @leave-cancelled="leaveCancelled">
+		<b-button variant="success" @click="exibir2 = !exibir2">Alternar</b-button>
+		<transition :css="false" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @enter-cancelled="enterCancelled" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @leave-cancelled="leaveCancelled">
 			<div v-if="exibir2" class="caixa"></div>
 		</transition>
 	</div>
@@ -43,36 +43,49 @@ export default {
 			msg: 'Uma mensagem de informação para o usuário!',
 			exibir: false,
 			exibir2: true,
-			tipoAnimacao: 'fade'
+			tipoAnimacao: 'fade',
+			larguraBase: 0
 		}
 	},
     methods: {
+		animar(el, done, negativo) {
+			let rodada = 1
+			const temporizador = setInterval(() => {
+				const novaLargura = this.larguraBase + (negativo? -rodada * 10 : rodada * 10)
+				el.style.width = `${novaLargura}px`
+				rodada++
+				if(rodada > 30) {
+					clearInterval(temporizador)
+					done()
+				}
+			}, 10)
+		},
         beforeEnter(el) {
-			console.log('beforeEnter')
+			this.larguraBase = 0
+			el.style.width = `${this.larguraBase}px`
         },
-        enter(el) {
-			console.log('enter')
-			//done()
+        enter(el, done) {
+			this.animar(el, done, false)
         },
-        afterEnter(el) {
-			console.log('afterEnter')
-        },
-        enterCancelled(el) {
-			console.log('enterCancelled')
-        },
+        // afterEnter(el) {
+		// 	console.log('afterEnter')
+        // },
+        // enterCancelled(el) {
+		// 	console.log('enterCancelled')
+        // },
         beforeLeave(el) {
-			console.log('beforeLeave')
+			this.larguraBase = 300
+			el.style.width = `${this.larguraBase}px`
         },
-        leave(el) {
-			console.log('leave')
-			//done()
+        leave(el, done) {
+			this.animar(el, done, true)
         },
-        afterLeave(el) {
-			console.log('afterLeave')
-        },
-        leaveCancelled(el) {
-			console.log('leaveCancelled')
-        }
+        // afterLeave(el) {
+		// 	console.log('afterLeave')
+        // },
+        // leaveCancelled(el) {
+		// 	console.log('leaveCancelled')
+        // }
     }
 }
 </script>

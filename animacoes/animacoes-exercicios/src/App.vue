@@ -29,8 +29,9 @@
 
 		<hr>
 		<b-button variant="success" @click="exibir2 = !exibir2">Alternar</b-button>
-		<transition :css="false" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @enter-cancelled="enterCancelled" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @leave-cancelled="leaveCancelled">
-			<div v-if="exibir2" class="caixa"></div>
+		<transition mode="out-in" :css="false" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @enter-cancelled="enterCancelled" @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @leave-cancelled="leaveCancelled">
+			<div v-if="exibir2" class="caixa verde" key="verde"></div>
+			<div v-else class="caixa azul"  key="azul"></div>
 		</transition>
 	</div>
 </template>
@@ -105,7 +106,14 @@ export default {
 	height: 100px;
 	width: 300px;
 	margin: 30px auto;
+}
+
+.verde {
 	background-color: lightgreen;
+}
+
+.azul {
+	background-color: lightblue;
 }
 
 .fade-enter, .fade-leave-to {

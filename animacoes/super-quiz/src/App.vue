@@ -1,8 +1,10 @@
 <template>
 	<div id="app">
 		<h1>Super Quiz</h1>
-		<Question v-if="questionMode" :question="questions[currentQuestion]" @answered="showResult"/>
-		<Result v-else :result="result" @confirmed="nextQuestion"/>
+		<transition name="flip" mode="out-in">
+			<Question v-if="questionMode" :question="questions[currentQuestion]" @answered="showResult" :key="question"/>
+			<Result v-else :result="result" @confirmed="nextQuestion" :key="result"/>
+		</transition>
 	</div>
 </template>
 
@@ -59,20 +61,20 @@ body {
 }
 
 @keyframes flip-out {
-	from { transform: rotateY(0deg); }
-	to { transform: rotateY(90deg); }
+	from { transform: rotateY(0deg) rotateX(0deg); }
+	to { transform: rotateY(90deg) rotateX(90deg); }
 }
 
 @keyframes flip-in {
-	from { transform: rotateY(90deg); }
-	to { transform: rotateY(0deg); }
+	from { transform: rotateY(90deg) rotateX(90deg); }
+	to { transform: rotateY(0deg) rotateX(0deg); }
 }
 
 .flip-enter-active {
-	animation: flip-in 0.3s ease;
+	animation: flip-in 0.5s ease;
 }
 
 .flip-leave-active {
-	animation: flip-out 0.3s ease;
+	animation: flip-out 0.5s ease;
 }
 </style>

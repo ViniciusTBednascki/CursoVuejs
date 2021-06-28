@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Inicio from './components/Inicio'
-
+import Menu from './components/templates/Menu.vue'
+import MenuAlt from './components/templates/MenuAlt.vue'
 import Usuario from './components/usuario/Usuario'
 import UsuarioLista from './components/usuario/UsuarioLista'
 import UsuarioDetalhe from './components/usuario/UsuarioDetalhe'
@@ -12,12 +13,21 @@ Vue.use(Router)
 export default new Router({
     mode: 'history',
     routes: [{
+        name: 'inicio',
         path: '/',
-        component: Inicio,
-        name: 'inicio'
+        //component: Inicio
+        components: {
+            default: Inicio,
+            menu: Menu
+        }
     }, {
         path: '/usuario',
-        component: Usuario,
+        //component: Usuario,
+        components: {
+            default: Usuario,
+            menu: MenuAlt,
+            menuInferior: MenuAlt
+        },
         props: true,
         children: [
             {path: '', component: UsuarioLista},

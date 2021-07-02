@@ -15,6 +15,7 @@ export default {
     // next(vm => {
     //   console.log(vm.id)
     // })
+    next()
   }
   // data() {
   //   return {

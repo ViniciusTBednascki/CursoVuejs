@@ -5,7 +5,7 @@
       <p><strong>Completo: </strong>{{$route.query.completo ? 'Sim': 'Não'}}</p>
       <p><strong>Lingua: </strong>{{$route.query.lingua}}</p>
       <hr>
-      <button primario>Confirmar</button>
+      <button primario @click="confirmado = true">Confirmar</button>
       <div id="rodape">
         <h3>Curso Vue</h3>
       </div>
@@ -14,7 +14,23 @@
 
 <script>
 export default {
-  props: ['id']
+  props: ['id'],
+  data() {
+    return {
+      confirmado: false,
+    }
+  },
+  beforeRouteLeave(to, from, next){
+    if(this.confirmado) {
+      next()
+    }else {
+      if(confirm('Você não salvou as alterações, tem certeza que deseja sair?')){
+        next()
+      }else {
+        next(false)
+      }
+    }
+  }
 }
 </script>
 

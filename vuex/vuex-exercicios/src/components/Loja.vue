@@ -1,10 +1,14 @@
 <template>
     <Painel titulo="Loja Virtual" verde>
         <div class="loja">
-            <span>Adicionar</span>
-            <input type="number" v-model.number="quantidade">
-            <span>itens de <strong>R$</strong></span>
-            <input type="number" v-model.number="preco">
+            <span>
+                <strong>Adicionar </strong>
+                <input type="number" v-model.number="quantidade">
+            </span>
+            <span>
+                <strong>itens de R$ </strong>
+                <input type="number" v-model.number="preco">
+            </span>
             <button @click="adicionar">Agora!</button>
         </div>
     </Painel>
@@ -29,8 +33,8 @@ export default {
                 preco: this.preco
             }
             this.sequencia++
-            // eslint-disable-next-line
-            console.log(produto)
+            
+            this.$store.state.produtos.push(produto)
         }
     }
 }

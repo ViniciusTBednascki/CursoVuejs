@@ -1,7 +1,7 @@
 <template>
     <Painel titulo="Resumo" roxo>
         <div class="resumo">
-            <span>Total: <strong>{{ valor | dinheiro }}</strong></span>
+            <span>Total: <strong>{{ total | dinheiro }}</strong></span>
             <hr>
             <button>Finalizar!</button>
         </div>
@@ -13,7 +13,7 @@ import { mapGetters } from 'vuex'
 
 export default {
     computed: mapGetters({
-        valor: 'valorTotal'
+        total: 'valorTotal'
     })
     // computed: mapGetters(['valorTotal'])
     // computed: {

@@ -5,7 +5,7 @@ export default {
         stocks: []
     },
     getters: {
-        getStocks(state) {
+        stocks(state) {
             return state.stocks
         }
     },

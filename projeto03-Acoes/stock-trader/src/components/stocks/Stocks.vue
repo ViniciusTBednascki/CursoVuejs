@@ -1,19 +1,17 @@
 <template>
   <v-layout row wrap>
-    <Stock v-for="stock in stocks" :key="stock.id" :stock="stock"/>
+    <Stock v-for="stock in stocks" :key="stock.id" :stock="stock" parent="Stocks"/>
   </v-layout>
 </template>
 
 <script>
-import Stock from './Stock.vue'
+import Stock from '../Stock.vue'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {Stock},
   computed: {
-    ...mapGetters({
-      stocks: 'getStocks'
-    })
+    ...mapGetters(['stocks'])
   }
 }
 </script>

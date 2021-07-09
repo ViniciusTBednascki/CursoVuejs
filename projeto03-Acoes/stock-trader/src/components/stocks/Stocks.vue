@@ -11,7 +11,9 @@ import { mapGetters } from 'vuex'
 export default {
   components: {Stock},
   computed: {
-    ...mapGetters(['stocks'])
+    ...mapGetters({
+      stocks: 'getStocks'
+    })
   }
 }
 </script>

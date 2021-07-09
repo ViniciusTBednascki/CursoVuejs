@@ -1,15 +1,25 @@
+import stocks from '@/data/stocks'
+
 export default {
     state: {
-        stocks: [
-            {id: 1, name: 'BMW', price: 110},
-            {id: 2, name: 'Google', price: 185},
-            {id: 3, name: 'Apple', price: 206},
-            {id: 4, name: 'Twitter', price: 87}
-          ]
+        stocks: []
     },
     getters: {
-        stocks(state) {
+        getStocks(state) {
             return state.stocks
         }
+    },
+    mutations: {
+        setStocks(state, stocks) {
+            state.stocks = stocks
+        }
+    },
+    actions: {
+        buyStock({ commit }, order) {
+            commit()
+        },
+        initStocks({ commit }) {
+            commit('setStocks', stocks)
+        },
     }
 }

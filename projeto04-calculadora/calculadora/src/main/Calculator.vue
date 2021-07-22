@@ -47,7 +47,7 @@ export default {
         addDigit(n) {
             if(n == '.') {
                 if(!this.hasPoint) {
-                    this.value = this.value + n
+                    this.value = this.value != '0' ? this.value + n : n   
                     this.hasPoint = true
                 }
             } else {
@@ -61,28 +61,33 @@ export default {
                     parseFloat(this.value.substring(0, operationIndex).trim()),
                     parseFloat(this.value.substring(operationIndex + 1).trim()) 
                 ]
-                console.log(operationValues)
+                let result;
                 switch (this.operationSelected) {
                     case '/':
-                        
+                        result = this.roundNumber(operationValues[0]/operationValues[1], this.decimals)
                         break;
                 
                     case '*':
-                        
+                        result = this.roundNumber(operationValues[0]*operationValues[1], this.decimals)                        
                         break;
                 
                     case '-':
-                        
+                        result = this.roundNumber(operationValues[0]-operationValues[1], this.decimals)
                         break;
                 
                     case '+':
-                        
+                        result = this.roundNumber(operationValues[0]+operationValues[1], this.decimals)                        
                         break;
                 
                     default:
                         break;
                 }
+                this.value = result
             }
+        },
+        roundNumber(number, decimals) {
+            const power = Math.pow(10, decimals)
+            return Math.round((number + Number.EPSILON) * power) / power
         }
     },
     data() {
@@ -90,7 +95,8 @@ export default {
             operationsRegex: /[*+/-]/,
             value: '0',
             operationSelected: '',
-            hasPoint: false
+            hasPoint: false,
+            decimals: 3
         }
     }
 }

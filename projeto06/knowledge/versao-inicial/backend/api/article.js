@@ -35,7 +35,7 @@ module.exports = app => {
             
             try {
                 existsOrError(rowsDeleted, "Artigo não foi encontrado")
-            } catch {
+            } catch(msg) {
                 return res.status(400).send(msg)
             }
             
@@ -49,7 +49,7 @@ module.exports = app => {
         const limit = parseInt(req.query.limit) || 10 //usando para a paginação
         const page = parseInt(req.query.page) || 1
 
-        const result =  await app.db('articles').count('id').first()
+        const result = await app.db('articles').count('id').first()
         const count = parseInt(result.count)
         
         app.db('articles')
@@ -69,7 +69,7 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    const getBycategory = async (req, res) => {
+    const getByCategory = async (req, res) => {
         const limit = parseInt(req.query.limit) || 10
         const page = parseInt(req.query.page) || 1
         const categoryId = req.params.id
@@ -86,5 +86,5 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
-    return { save, remove, get, getById, getBycategory }
+    return { save, remove, get, getById, getByCategory }
 }

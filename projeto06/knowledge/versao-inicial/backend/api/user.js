@@ -30,7 +30,9 @@ module.exports = app => {
         delete user.confirmPassword
 
         if(user.id) {
-            app.db('users').update(user).where({ id: user.id })
+            app.db('users').update(user)
+                .where({ id: user.id })
+                .whereNull('deletedAt')
                 .then(() => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         } else {
@@ -43,6 +45,7 @@ module.exports = app => {
     const get = async (req, res) => {
         app.db('users')
             .select('id', 'name', 'email', 'admin')
+            .whereNull('deletedAt')
             .then(users => res.json(users))
             .catch(err => res.status(500).send(err))
     }    
@@ -51,11 +54,28 @@ module.exports = app => {
         const userId = req.params.id
         app.db('users')
             .select('id', 'name', 'email', 'admin')
-            .where({ id: userId }).first()
+            .where({ id: userId })
+            .whereNull('deletedAt').first()
             .then(user => res.json(user))
             .catch(err => res.status(500).send(err))
     }
     
+    const remove = async (req, res) => {
+        try {
+            const articles = await app.db('articles')
+                .where({ userId: req.params.id })
+            notExistsOrError(articles, 'Usuário possui artigos!')
 
-    return { save, get, getById }
+            const rowsUpdate = await app.db('users')
+                .update({ deletedAt: new Date() })
+                .where({ id: req.params.id })
+            notExistsOrError(rowsUpdate, 'Usuário não foi encontrado.')
+
+            res.status(204).send()
+        } catch(msg) {
+            return res.status(400).send(msg)
+        }
+    }
+
+    return { save, get, getById, remove }
 }

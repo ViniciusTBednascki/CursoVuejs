@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<Header />
+		<Header title="Projeto 06 - Base de conhecimento"/>
 		<Menu />
 		<Content />
 		<Footer />

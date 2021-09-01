@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" :class="{'hide-menu': !isMenuVisible}">
 		<Header title="Projeto 06 - Base de conhecimento"/>
 		<Menu />
 		<Content />
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Header from '@/components/template/Header.vue'
 import Menu from '@/components/template/Menu.vue'
 import Content from '@/components/template/Content.vue'
@@ -15,7 +16,8 @@ import Footer from '@/components/template/Footer.vue'
 
 export default {
 	name: "App",
-	components: { Header, Menu, Content, Footer }
+	components: { Header, Menu, Content, Footer },
+    computed: mapState(['isMenuVisible'])
 }
 </script>
 
@@ -40,5 +42,12 @@ export default {
 			"header header"
 			"menu content"
 			"menu footer";
+	}
+
+	#app.hide-menu {
+		grid-template-areas: 
+			"header header"
+			"content content"
+			"footer footer";
 	}
 </style>

@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <span>Copyright <strong>Vinicius T. Bednascki</strong> © 2021</span>
+        <span>Copyright <strong>Curso Vue.js</strong> © 2021</span>
     </footer>
 </template>
 

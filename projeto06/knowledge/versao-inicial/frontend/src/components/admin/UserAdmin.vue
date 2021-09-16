@@ -87,7 +87,7 @@ export default {
       },
       reset() {
         this.mode = 'save'
-        this.user = { admin: false}
+        this.user = { admin: false }
         this.loadUsers()
       },
       save() {

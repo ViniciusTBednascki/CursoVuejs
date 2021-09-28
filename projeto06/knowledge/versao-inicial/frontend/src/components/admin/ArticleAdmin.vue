@@ -63,7 +63,7 @@ export default {
         categories: [],
         users: [],
         page: 1,
-        limit: 0,
+        limit: 3,
         count: 0,
         fields: [
           { key: 'id', label: 'Código', sortable: true },
@@ -75,7 +75,7 @@ export default {
     },
     methods: {
       loadArticles() {
-        const url = `${baseApiUrl}/articles?page=${this.page}` //colocar o limite também
+        const url = `${baseApiUrl}/articles?page=${this.page}&limit=${this.limit}`
         axios.get(url).then(res => {
           this.articles = res.data.data.map(article => {
             return {id: article.id, name: article.name, description: article.description}

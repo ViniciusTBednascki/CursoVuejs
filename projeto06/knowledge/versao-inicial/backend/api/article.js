@@ -46,7 +46,7 @@ module.exports = app => {
     }
 
     const get = async (req, res) => {
-        const limit = parseInt(req.query.limit) || 10 //usando para a paginação
+        const limit = parseInt(req.query.limit) || 1000 //usando para a paginação
         const page = parseInt(req.query.page) || 1
 
         const result = await app.db('articles').count('id').first()

@@ -47,10 +47,17 @@ module.exports = app => {
     }
 
     const get = async (req, res) => {
+        const limit = parseInt(req.query.limit) || 10 //usando para a paginação
+        const page = parseInt(req.query.page) || 1
+
+        const result = await app.db('users').whereNull('deletedAt').count('id').first()
+        const count = parseInt(result.count)
+
         app.db('users')
             .select('id', 'name', 'email', 'admin')
             .whereNull('deletedAt')
-            .then(users => res.json(users))
+            .limit(limit).offset(page * limit - limit)
+            .then(users => res.json({ data: users, count, limit }))
             .catch(err => res.status(500).send(err))
     }    
 

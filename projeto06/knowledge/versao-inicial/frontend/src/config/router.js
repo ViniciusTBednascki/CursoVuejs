@@ -41,7 +41,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     const json = localStorage.getItem(userKey)
-	const userData = JSON.parse(json)
+
+    if(to.matched.some(record => record.meta.requiresAdmin)) {
+        const user = JSON.parse(json)
+        user && user.admin ? next() : next({ path: '/'})
+    } else {
+        next()
+    }
 })
 
 export default router
